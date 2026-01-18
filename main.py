@@ -147,6 +147,7 @@ def inserirReceitas():
     graficoBar()
     resumoTotal()
     graficoPizza()
+    atualizarTabela()
 
 #Função para inserir despesas------------------------
 def inserirDespesas():
@@ -174,6 +175,7 @@ def inserirDespesas():
     graficoBar()
     resumoTotal()
     graficoPizza()
+    atualizarTabela()
 
 #Função para deletar---------------- -----------------
 def deletar_dados():
@@ -205,6 +207,7 @@ def deletar_dados():
             graficoBar()
             resumoTotal()
             graficoPizza()
+            atualizarTabela()
 
     except IndexError:
         messagebox.showerror('Erro', 'Selecione um dos dados da tabela')
@@ -360,8 +363,21 @@ def visualizacaoRenda():
      for item in lista_itens:
         tree.insert('', 'end', values=item)
 
+     atualizarTabela()
    
-     
+def atualizarTabela():
+    # Limpa a tabela
+    for item in tree.get_children():
+        tree.delete(item)
+
+    # Busca dados atualizados
+    lista_itens = tabela()
+
+    # Insere novamente
+    for item in lista_itens:
+        tree.insert('', 'end', values=item)
+
+
 #Configuração da inserção de despesas
 l_info = Label(frameOperacoes, text="Insira novas despesas", height=1,anchor=NW, font=('Verdana 10 bold'), bg=co1, fg=co4)
 l_info.place(x=10, y=10)
